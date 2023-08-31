@@ -1,6 +1,6 @@
 const client = require('../client')
 
-const createIngredients = async ({ ingredients, measurements }) => {
+const createIngredients = async ({ recipeId, ingredients, measurements }) => {
     try {
         const {
             rows: [ingredient],
@@ -11,7 +11,7 @@ const createIngredients = async ({ ingredients, measurements }) => {
             RETURNING *
             `,
 
-            [ ingredients, measurements]
+            [ recipeId, ingredients, measurements]
         )
         return ingredient
     } catch (error) {
