@@ -1,17 +1,17 @@
 const client = require('../client')
 
-const createIngredients = async ({ recipeId, ingredients, measurements }) => {
+const createIngredients = async ({ recipesId, ingredients, measurements }) => {
     try {
         const {
             rows: [ingredient],
         } = await client.query (
             `
-            INSERT INTO ingredients(ingredients, measurements)
-            VALUES ($1, $2)
+            INSERT INTO ingredients("recipesId", ingredients, measurements)
+            VALUES ($1, $2, $3)
             RETURNING *
             `,
 
-            [ recipeId, ingredients, measurements]
+            [ recipesId, ingredients, measurements]
         )
         return ingredient
     } catch (error) {

@@ -6,8 +6,8 @@ const createInstructions = async ({ recipesId, steps }) => {
             rows: [instruction]
         } = await client.query (
             `
-            INSERT INTO instructions(steps)
-            VALUES ($1)
+            INSERT INTO instructions("recipesId", steps)
+            VALUES ($1, $2)
             RETURNING *
             `,
             [recipesId, steps]
@@ -18,4 +18,19 @@ const createInstructions = async ({ recipesId, steps }) => {
     }
 }
 
-module.exports = {createInstructions}
+const getAllInstructions = async () => {
+    try {
+        const { rows }
+        = await client.query(`
+            SELECT * 
+            FROM instructions;
+        `)
+        console.log(rows)
+        return rows
+    } catch (error) {
+        throw error
+    }
+}
+
+
+module.exports = {createInstructions, getAllInstructions}

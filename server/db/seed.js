@@ -27,7 +27,7 @@ const createTables = async () => {
     console.log("Building tables")
     await client.query(`
         CREATE TABLE recipes (
-            "recipes_id" SERIAL PRIMARY KEY,
+            "recipesId" SERIAL PRIMARY KEY,
             recipeName TEXT,
             description TEXT,
             prepTime TEXT,
@@ -35,15 +35,15 @@ const createTables = async () => {
             servings TEXT
         );
         CREATE TABLE ingredients (
-            "ingredients_id" SERIAL PRIMARY KEY,
+            "ingredientsId" SERIAL PRIMARY KEY,
+            "recipesId" INTEGER REFERENCES recipes("recipesId") NOT NULL,
             ingredients TEXT [],
-            measurements TEXT [],
-            "recipe_id" INTEGER REFERENCES recipes(recipe_id) NOT NULL
+            measurements TEXT []
         );
         CREATE TABLE instructions (
-            "instructions_id" SERIAL PRIMARY KEY,
-            steps TEXT [],
-            "recipe_id" INTEGER REFERENCES recipes(recipe_id) NOT NULL
+            "instructionsId" SERIAL PRIMARY KEY,
+            "recipesId" INTEGER REFERENCES recipes("recipesId") NOT NULL,
+            steps TEXT []
         );
     `)
     console.log("Tables built!")
