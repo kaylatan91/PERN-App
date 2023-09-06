@@ -3,20 +3,20 @@
 
 // Recipes
 const recipes = [
-    { recipeName: 'Easy Overnight Oats', 
+    { recipe_name: 'Easy Overnight Oats', 
     description: 'Insert description here.', 
-    prepTime: '5 mins', 
-    cookTime: '0 mins', 
+    prep_time: '5 mins', 
+    cook_time: '0 mins', 
     servings: '1'},
-    { recipeName: 'Cold Peanut Noodle Salad', 
+    { recipe_name: 'Cold Peanut Noodle Salad', 
     description: 'Insert description here', 
-    prepTime: '20', 
-    cookTime: '10', 
+    prep_time: '20', 
+    cook_time: '10', 
     servings: '4' },
-    { recipeName: 'Thai Inspired Salmon Coconut Curry', 
+    { recipe_name: 'Thai Inspired Salmon Coconut Curry', 
     description: 'Insert description here.', 
-    prepTime: '15', 
-    cookTime: '20', 
+    prep_time: '15', 
+    cook_time: '20', 
     servings: '4'}
 ]
 

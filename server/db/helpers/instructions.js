@@ -32,5 +32,53 @@ const getAllInstructions = async () => {
     }
 }
 
+const getInstructionsById = async (instructionsId) => {
+    try {
+        const {
+            rows: [instruction]
+        } = await client.query(
+            `
+                SELECT * 
+                FROM instructions 
+                WHERE "instructionsId" =${instructionsId}
+            `
+        )
+        return instruction;
+    } catch (error) {
+        throw error
+    }
+}
 
-module.exports = {createInstructions, getAllInstructions}
+const updateInstruction = async (instructionsId, body) => {
+    try {
+        const { rows } = await client.query(
+            `
+            UPDATE instructions
+            SET "recipesId" = '${body.recipesId}',
+            steps = '{${body.steps}}'
+            WHERE "instructionsId" = ${instructionsId}
+            RETURNING *;
+            `
+        );
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+}
+
+// const deleteInstruction = async (instructionsId) => {
+//     try {
+//         const { rows } = await client.query(
+//             `
+//             DELETE FROM instructions
+//             WHERE "instructionsId" = ${instructionsId}
+//             RETURNING *;
+//             `
+//         )
+//         return rows;
+//     } catch (error) {
+        
+//     }
+// }
+
+module.exports = {createInstructions, getAllInstructions, getInstructionsById, updateInstruction}

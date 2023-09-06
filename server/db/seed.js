@@ -28,11 +28,11 @@ const createTables = async () => {
     await client.query(`
         CREATE TABLE recipes (
             "recipesId" SERIAL PRIMARY KEY,
-            recipeName TEXT,
-            description TEXT,
-            prepTime TEXT,
-            cookTime TEXT,
-            servings TEXT
+            recipe_name VARCHAR(255),
+            description VARCHAR(255) NOT NULL,
+            prep_time VARCHAR(255) NOT NULL,
+            cook_time VARCHAR(255) NOT NULL,
+            servings VARCHAR(255) NOT NULL
         );
         CREATE TABLE ingredients (
             "ingredientsId" SERIAL PRIMARY KEY,
