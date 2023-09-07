@@ -29,6 +29,7 @@ const createTables = async () => {
         CREATE TABLE recipes (
             "recipesId" SERIAL PRIMARY KEY,
             recipe_name VARCHAR(255),
+            image VARCHAR(1000),
             description VARCHAR(255) NOT NULL,
             prep_time VARCHAR(255) NOT NULL,
             cook_time VARCHAR(255) NOT NULL,

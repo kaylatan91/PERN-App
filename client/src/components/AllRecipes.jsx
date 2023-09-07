@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import { fetchAllRecipes } from '../../fetching';
+import SingleRecipe from './SingleRecipe';
 
 export default function AllRecipes() {
     const [recipes, setRecipes] = useState([]);
@@ -21,7 +22,7 @@ export default function AllRecipes() {
     )
     : recipes;
 
-    return(
+    return (
         <div>
             <label>
             Search:{" "}
@@ -34,13 +35,7 @@ export default function AllRecipes() {
             {
                 recipesToDisplay.map((recipe)=> {
                     return (
-                        <div key={recipe.recipesId}>
-                            <h2>{recipe.recipe_name}</h2>
-                            <p>{recipe.description}</p>
-                            <p>{recipe.prep_time}</p>
-                            <p>{recipe.cook_time}</p>
-                            <p>{recipe.servings}</p>
-                        </div>
+                    <SingleRecipe recipe={recipe} />
                     )
                 })
             }

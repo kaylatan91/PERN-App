@@ -68,3 +68,36 @@ export async function fetchAllIngredients () {
         console.error(error)
     }
 }
+
+export async function fetchIngredients(ingredientsId) {
+    try {
+        const response = await fetch(`${baseUrl}/ingredients/${ingredientsId}`)
+        const ingredient = await response.json();
+        return ingredient;
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+// -----INSTRUCTIONS FETCH REQUESTS-----
+
+export async function fetchAllInstructions () {
+    try {
+        const response = await fetch(`${baseUrl}/instructions`)
+        const instructions = await response.json();
+        return instructions;
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export async function fetchInstructions(instructionsId) {
+    try {
+        const response = await fetch(`${baseUrl}/instructions/${instructionsId}`)
+        const instruction = await response.json();
+        return instruction;
+    } catch (error) {
+        console.error(error)
+    }
+}

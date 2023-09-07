@@ -4,19 +4,22 @@
 // Recipes
 const recipes = [
      { recipe_name: 'Easy Overnight Oats', 
+    image: 'https://thefoodiephysician.com/wp-content/uploads/2023/05/fullsizeoutput_33e9.jpeg',
     description: 'This overnight oats recipe is a great and easy way to start off your day. You can prepare these in advance and it will last all week!', 
     prep_time: 'Prep Time: 5 mins', 
     cook_time: 'Cook Time: 0 mins', 
     servings: 'Servings: 1'},
-    { recipe_name: 'Cold Peanut Noodle Salad', 
+    { recipe_name: 'Cold Peanut Noodle Salad',
+    image: 'https://www.budgetbytes.com/wp-content/uploads/2019/06/Portion-Cold-Peanut-Noodle-Salad.jpg',
     description: 'This Cold Peanut Noodle Salad is the perfect meal of the summer! There is no need to reheat this dish since its flavors are so fresh, it will cool you down.', 
     prep_time: 'Prep Time: 20 mins', 
     cook_time: 'Cook Time: 10 mins', 
     servings: 'Servings: 4' },
-    { recipe_name: 'Thai Inspired Salmon Coconut Curry', 
+    { recipe_name: 'Thai Inspired Salmon Coconut Curry',
+    image: 'https://images.themodernproper.com/billowy-turkey/production/posts/2022/EasyOnePotCurrySalmon_Shot4_86.jpg?w=960&h=960&q=82&fm=jpg&fit=crop&dm=1664828670&s=762397fa9de335a847c59814228fa8db',
     description: 'This easy Thai-inspired salmon coconut curry has a tender pan-seared salmon in a creamy red curry coconut milk sauce. Giving you lots of flavor and comfort!', 
     prep_time: 'Prep Time: 15 mins', 
-    cook_time: 'Cook TimeL 20 mins', 
+    cook_time: 'Cook Time: 20 mins', 
     servings: 'Servings: 4'}
 ]
 

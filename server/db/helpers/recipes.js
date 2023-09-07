@@ -1,6 +1,6 @@
 const client = require('../client')
 
-const createRecipe = async ({ recipe_name, description, prep_time, cook_time, servings }) => {
+const createRecipe = async ({ recipe_name, image, description, prep_time, cook_time, servings }) => {
     try {
         const {
             rows: [recipe],
@@ -8,13 +8,13 @@ const createRecipe = async ({ recipe_name, description, prep_time, cook_time, se
             //INSERT SQL query
             // insert into table(column 1, column 2, etc.)
             `
-            INSERT INTO recipes(recipe_name, description, prep_time, cook_time, servings)
-            VALUES ($1, $2, $3, $4, $5)
+            INSERT INTO recipes(recipe_name, image, description, prep_time, cook_time, servings)
+            VALUES ($1, $2, $3, $4, $5, $6)
             RETURNING *
             `,
 
             //Kind of like a dependency array, hooks up the parameters to the $ variables
-            [ recipe_name, description, prep_time, cook_time, servings ]
+            [ recipe_name, image, description, prep_time, cook_time, servings ]
         )
         return recipe 
     } catch (error) {
@@ -58,7 +58,8 @@ const updateRecipe = async (recipesId, body) => {
         const { rows } = await client.query(
             `
                 UPDATE recipes
-                SET recipe_name = '${body.recipe_name}', 
+                SET recipe_name = '${body.recipe_name}',
+                image = '${body.image}',
                 description = '${body.description}',
                 prep_time = '${body.prep_time}',
                 cook_time = '${body.cook_time}',
