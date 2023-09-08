@@ -22,7 +22,7 @@ export async function fetchSingleRecipe(recipesId) {
     }
 }
 
-export async function createRecipe(recipe_name, description, prep_time, cook_time, servings) {
+export async function createRecipe(recipe_name, image, description, prep_time, cook_time, servings) {
     try {
         const response = await fetch(`${baseUrl}/recipes`, {
             method: "POST",
@@ -31,6 +31,7 @@ export async function createRecipe(recipe_name, description, prep_time, cook_tim
             },
             body: JSON.stringify({
                 recipe_name,
+                image,
                 description,
                 prep_time,
                 cook_time,

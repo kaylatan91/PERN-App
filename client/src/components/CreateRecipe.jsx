@@ -59,6 +59,12 @@ export default function CreateRecipeForm({recipe, setRecipe}) {
                 placeholder="Insert Image URL Link"
                 onChange={(e) => setImage(e.target.value)}
                 />
+                {image && (
+                    <img
+                    src={image}
+                    alt="Recipe"
+                    />
+                )}
                 <br />
                 <br />
                 <input
