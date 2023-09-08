@@ -32,15 +32,18 @@ const getAllInstructions = async () => {
     }
 }
 
-const getInstructionsById = async (instructionsId) => {
+const getInstructionsById = async (recipesId) => {
     try {
         const {
             rows: [instruction]
         } = await client.query(
             `
-                SELECT * 
-                FROM instructions 
-                WHERE "instructionsId" =${instructionsId}
+                SELECT recipes.*,
+                instructions.*
+                FROM recipes
+                JOIN instructions 
+                ON recipes."recipesId" = instructions."recipesId"
+                WHERE instructions."recipesId" =${recipesId}
             `
         )
         return instruction;
@@ -65,20 +68,5 @@ const updateInstruction = async (instructionsId, body) => {
         throw error;
     }
 }
-
-// const deleteInstruction = async (instructionsId) => {
-//     try {
-//         const { rows } = await client.query(
-//             `
-//             DELETE FROM instructions
-//             WHERE "instructionsId" = ${instructionsId}
-//             RETURNING *;
-//             `
-//         )
-//         return rows;
-//     } catch (error) {
-        
-//     }
-// }
 
 module.exports = {createInstructions, getAllInstructions, getInstructionsById, updateInstruction}

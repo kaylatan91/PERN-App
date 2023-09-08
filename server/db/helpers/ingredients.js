@@ -33,15 +33,18 @@ const getAllIngredients = async () => {
     }
 }
 
-const getIngredientsById = async (ingredientsId) => {
+const getIngredientsById = async (recipesId) => {
     try {
         const {
             rows: [ingredient]
         } = await client.query(
             `
-                SELECT * 
-                FROM ingredients
-                WHERE "ingredientsId" =${ingredientsId};
+                SELECT recipes.*,
+                ingredients.*
+                FROM recipes 
+                JOIN ingredients
+                ON recipes."recipesId" = ingredients."recipesId"
+                WHERE ingredients."recipesId"=${recipesId};
             `
         )
         return ingredient;

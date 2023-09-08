@@ -69,11 +69,32 @@ export async function fetchAllIngredients () {
     }
 }
 
-export async function fetchIngredients(ingredientsId) {
+export async function fetchIngredients(recipesId) {
     try {
-        const response = await fetch(`${baseUrl}/ingredients/${ingredientsId}`)
+        const response = await fetch(`${baseUrl}/ingredients/${recipesId}`)
         const ingredient = await response.json();
+        console.log(ingredient);
         return ingredient;
+    } catch (error) {
+        console.error(error)
+        return {ingredients: [], measurements: []};
+    }
+}
+
+export async function createIngredients(ingredients, measurements) {
+    try {
+        const response = await fetch(`${baseUrl}/ingredients`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                ingredients,
+                measurements
+            })
+        })
+        const result = await response.json();
+        return result;
     } catch (error) {
         console.error(error)
     }
@@ -92,11 +113,31 @@ export async function fetchAllInstructions () {
     }
 }
 
-export async function fetchInstructions(instructionsId) {
+export async function fetchInstructions(recipesId) {
     try {
-        const response = await fetch(`${baseUrl}/instructions/${instructionsId}`)
+        const response = await fetch(`${baseUrl}/instructions/${recipesId}`)
         const instruction = await response.json();
+        console.log(instruction)
         return instruction;
+    } catch (error) {
+        console.error(error)
+        return  {steps: []};
+    }
+}
+
+export async function createInstructions(steps) {
+    try {
+        const response = await fetch(`${baseUrl}/instructions`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                steps
+            })
+        })
+        const result = await response.json();
+        return result;
     } catch (error) {
         console.error(error)
     }

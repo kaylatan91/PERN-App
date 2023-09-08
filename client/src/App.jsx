@@ -2,15 +2,25 @@ import { Routes, Route } from "react-router-dom"
 import AllRecipes from './components/AllRecipes'
 import './App.css'
 import RecipeCard from "./components/RecipeCard"
+import Home from "./components/Home"
+import NavBar from "./components/NavBar"
+import CreateRecipeForm from "./components/CreateRecipe"
 
 function App() {
   return (
     <>
-    <div id="main-section">
+    <div id="nav-bar-container">
+      <NavBar />
+    </div>
+    <div>
       <Routes>
-        <Route path="/" element={<AllRecipes />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/recipes" element={<AllRecipes />} />
         <Route path="/recipe/:id" element={<RecipeCard />} />
+        <Route path="/recipes/create" element={<CreateRecipeForm />} />
       </Routes>
+    </div>
+    <div>
     </div>
     </>
   )

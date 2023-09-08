@@ -1,42 +1,63 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 5rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#home-container {
+  padding: 100px 10px; 
+  width: auto;
+  background-color: white;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.recipe-container {
+  background-color: white;
+  box-shadow: 0 2px 4px;
+  padding: 20px;
+  border-radius: 8px;
+  width: auto;
+  height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+#nav-bar-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 20px; 
+  width: auto;
+  background-color: white;
 }
 
-.card {
-  padding: 2em;
+#nav-bar-container a {
+  text-decoration: none;
+  color: #5394e3; 
+  margin-left: 20px; 
 }
 
-.read-the-docs {
-  color: #888;
+#search-container {
+  display: flex;
+  justify-content: flex-end;
+  color: #5394e3;
 }
+
+input {
+  background-color: white;
+  color: #5394e3;
+  padding: 5px;
+  box-sizing: border-box;
+  border-color: white;
+}
+
+.recipe-button {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 4px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.recipe-button:hover {
+  background-color: #6fabf5;
+  cursor:grab;
+}
+
+

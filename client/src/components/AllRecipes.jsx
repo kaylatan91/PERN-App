@@ -23,8 +23,8 @@ export default function AllRecipes() {
     : recipes;
 
     return (
-        <div>
-            <label>
+        <div className="recipe-container">
+            <label id="search-container">
             Search:{" "}
             <input
             type="text"
