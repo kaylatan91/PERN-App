@@ -26,7 +26,6 @@ router.get('/:id', async (req, res, next) => {
 // POST - /api/recipes - create a new recipe
 router.post('/', async (req, res, next) => {
     try {
-        console.log("creating recipe", req.body)
         const recipe = await createRecipe(req.body);
         res.send(recipe);
     } catch (error) {

@@ -39,9 +39,10 @@ export async function createRecipe(recipe_name, image, description, prep_time, c
             })
         })
         const result = await response.json();
-        return result;
+        return {result, success:true};
     } catch (error) {
         console.error(error)
+        return error;
     }
 }
 
@@ -82,7 +83,7 @@ export async function fetchIngredients(recipesId) {
     }
 }
 
-export async function createIngredients(ingredients, measurements) {
+export async function createIngredients({recipesId,ingredients, measurements}) {
     try {
         const response = await fetch(`${baseUrl}/ingredients`, {
             method: "POST",
@@ -90,14 +91,16 @@ export async function createIngredients(ingredients, measurements) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                recipesId,
                 ingredients,
                 measurements
             })
         })
         const result = await response.json();
-        return result;
+        return {result, success:true};
     } catch (error) {
         console.error(error)
+        return(error)
     }
 }
 
@@ -115,10 +118,12 @@ export async function fetchAllInstructions () {
 }
 
 export async function fetchInstructions(recipesId) {
+    // console.log("entering fetch instructions")
+    // console.log("recipesId", recipesId)
     try {
         const response = await fetch(`${baseUrl}/instructions/${recipesId}`)
         const instruction = await response.json();
-        console.log(instruction)
+        console.log("hi from fetch", instruction)
         return instruction;
     } catch (error) {
         console.error(error)
@@ -126,7 +131,8 @@ export async function fetchInstructions(recipesId) {
     }
 }
 
-export async function createInstructions(steps) {
+export async function createInstructions({recipesId, steps}) {
+    // console.log("creating instructions")
     try {
         const response = await fetch(`${baseUrl}/instructions`, {
             method: "POST",
@@ -134,12 +140,14 @@ export async function createInstructions(steps) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                recipesId,
                 steps
             })
         })
         const result = await response.json();
-        return result;
+        return {result, success: true};
     } catch (error) {
         console.error(error)
+        return(error);
     }
 }

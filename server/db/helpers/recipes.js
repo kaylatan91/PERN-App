@@ -76,6 +76,20 @@ const updateRecipe = async (recipesId, body) => {
 
 const deleteRecipe = async (recipesId) => {
     try {
+        const { rows: ingredients } = await client.query(
+            `
+            DELETE FROM ingredients
+            WHERE "recipesId" = ${recipesId}
+            RETURNING *;
+            `
+        )
+        const { rows: instructions } = await client.query(
+            `
+            DELETE FROM instructions
+            WHERE "recipesId" = ${recipesId}
+            RETURNING *;
+            `
+        )
         const { rows } = await client.query(
             `
             DELETE FROM recipes 
@@ -83,6 +97,8 @@ const deleteRecipe = async (recipesId) => {
             RETURNING *;
             `
         );
+        rows.ingredients=ingredients
+        rows.instructions=instructions
         return rows;
     } catch (error) {
        throw error 

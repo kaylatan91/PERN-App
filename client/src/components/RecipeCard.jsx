@@ -4,8 +4,8 @@ import {fetchSingleRecipe, fetchIngredients, fetchInstructions, deleteRecipe} fr
 
 export default function RecipeCard() {
   const [recipe, setRecipe] = useState([]);
-  const [ingredients, setIngredients] = useState({ingredients: [], measurements: []});
-  const [instructions, setInstructions] = useState({steps: []});
+  const [ingredientsRC, setIngredientsRC] = useState({ingredients: [], measurements: []});
+  const [instructionsRC, setInstructionsRC] = useState({steps: []});
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -20,12 +20,13 @@ export default function RecipeCard() {
   }
   useEffect(() => {
     async function getRecipe() {
+      console.log("entering getRecipe")
       const recipe = await fetchSingleRecipe(id);
-      const ingredients = await fetchIngredients(id);
-      const instructions = await fetchInstructions(id);
+      const ingredientsRC = await fetchIngredients(id);
+      const instructionsRC = await fetchInstructions(id);
       setRecipe(recipe);
-      setIngredients(ingredients);
-      setInstructions(instructions);
+      setIngredientsRC(ingredientsRC);
+      setInstructionsRC(instructionsRC);
     //   console.log(recipe);
     //   console.log(ingredients);
     //   console.log(instructions);
@@ -39,9 +40,9 @@ export default function RecipeCard() {
       <h1>{recipe.recipe_name}</h1>
       <img src={recipe.image} alt={recipe.name} />
       <h2>Ingredients:</h2>
-      {ingredients.ingredients && ingredients.ingredients.length > 0 ? (
+      {ingredientsRC.ingredients && ingredientsRC.ingredients.length > 0 ? (
         <ul>
-          {ingredients.ingredients.map((ingredient, index) => (
+          {ingredientsRC.ingredients.map((ingredient, index) => (
             <p key={index}>{ingredient}</p>
           ))}
         </ul>
@@ -49,9 +50,9 @@ export default function RecipeCard() {
         <p>No ingredients available</p>
       )}
       <h2>Measurements:</h2>
-      {ingredients.measurements && ingredients.measurements.length > 0 ? (
+      {ingredientsRC.measurements && ingredientsRC.measurements.length > 0 ? (
         <ul>
-          {ingredients.measurements.map((measurement, index) => (
+          {ingredientsRC.measurements.map((measurement, index) => (
             <p key={index}>{measurement}</p>
           ))}
         </ul>
@@ -59,9 +60,9 @@ export default function RecipeCard() {
         <p>No measurements available</p>
       )}
       <h2>Instructions:</h2>
-      {instructions.steps && instructions.steps.length > 0 ? (
+      {instructionsRC.steps && instructionsRC.steps.length > 0 ? (
         <ol>
-          {instructions.steps.map((step, index) => (
+          {instructionsRC.steps.map((step, index) => (
             <p key={index}>{step}</p>
           ))}
         </ol>

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import { fetchAllRecipes } from '../../fetching';
 import SingleRecipe from './SingleRecipe';
+import CreateRecipeForm from './CreateRecipe';
 
 export default function AllRecipes() {
     const [recipes, setRecipes] = useState([]);
@@ -32,10 +33,11 @@ export default function AllRecipes() {
             onChange={(e) => setSearchParam(e.target.value.toLowerCase())}
             />
             </label>
+            <CreateRecipeForm setRecipes={setRecipes}/>
             {
                 recipesToDisplay.map((recipe)=> {
                     return (
-                    <SingleRecipe recipe={recipe} />
+                    <SingleRecipe key={recipe.id} recipe={recipe} />
                     )
                 })
             }
