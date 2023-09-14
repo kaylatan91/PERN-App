@@ -24,6 +24,7 @@ export default function Register({ setToken }) {
         <h1>Register!</h1>
         <form onSubmit={handleSubmit}>
           <input
+            id="username"
             placeholder="username"
             autoFocus
             value={username}
