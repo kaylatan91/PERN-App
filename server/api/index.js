@@ -9,6 +9,15 @@ router.get("/", async (req, res, next) => {
     }
 })
 
+// ROUTER: /api/users
+router.use('/users', require('./users'));
+
+// ROUTER: /api/register
+router.use("/register", require('./users'))
+
+// ROUTER: /api/login
+router.use('/login', require('./users'))
+
 // ROUTER: /api/recipes
 router.use('/recipes', require('./recipes'));
 

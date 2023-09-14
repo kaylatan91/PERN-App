@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {fetchSingleRecipe, fetchIngredients, fetchInstructions, deleteRecipe} from "../../fetching";
+import {
+  fetchSingleRecipe,
+  fetchIngredients,
+  fetchInstructions,
+  deleteRecipe,
+} from "../../fetching";
 
 export default function RecipeCard() {
   const [recipe, setRecipe] = useState([]);
-  const [ingredientsRC, setIngredientsRC] = useState({ingredients: [], measurements: []});
-  const [instructionsRC, setInstructionsRC] = useState({steps: []});
+  const [ingredientsRC, setIngredientsRC] = useState({
+    ingredients: [],
+    measurements: [],
+  });
+  const [instructionsRC, setInstructionsRC] = useState({ steps: [] });
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -20,17 +28,17 @@ export default function RecipeCard() {
   }
   useEffect(() => {
     async function getRecipe() {
-      console.log("entering getRecipe")
+      console.log("entering getRecipe");
       const recipe = await fetchSingleRecipe(id);
       const ingredientsRC = await fetchIngredients(id);
       const instructionsRC = await fetchInstructions(id);
       setRecipe(recipe);
       setIngredientsRC(ingredientsRC);
       setInstructionsRC(instructionsRC);
-    //   console.log(recipe);
-    //   console.log(ingredients);
-    //   console.log(instructions);
-    //   return recipe;
+      //   console.log(recipe);
+      //   console.log(ingredients);
+      //   console.log(instructions);
+      //   return recipe;
     }
     getRecipe();
   }, [id]);
@@ -46,7 +54,7 @@ export default function RecipeCard() {
             <p key={index}>{ingredient}</p>
           ))}
         </ul>
-      ) : ( 
+      ) : (
         <p>No ingredients available</p>
       )}
       <h2>Measurements:</h2>
@@ -56,7 +64,7 @@ export default function RecipeCard() {
             <p key={index}>{measurement}</p>
           ))}
         </ul>
-      ) : ( 
+      ) : (
         <p>No measurements available</p>
       )}
       <h2>Instructions:</h2>
@@ -66,7 +74,7 @@ export default function RecipeCard() {
             <p key={index}>{step}</p>
           ))}
         </ol>
-      ) : ( 
+      ) : (
         <p>No instructions available</p>
       )}
       <button onClick={handleDelete}>Delete Recipe</button>

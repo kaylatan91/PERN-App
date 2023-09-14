@@ -1,10 +1,11 @@
 // THIS FILE WILL RESET YOUR DATABASE - PROCEED WITH CAUTION
 const client = require('./client')
 
-const { recipes, ingredients, instructions } = require("./seedData")
+const { users, recipes, ingredients, instructions } = require("./seedData")
 const { createRecipe } = require('./helpers/recipes')
 const { createIngredients } = require('./helpers/ingredients')
 const { createInstructions } = require('./helpers/instructions')
+const { createUser } = require('./helpers/users')
 
 
 // Drop Tables for cleanliness
@@ -12,6 +13,7 @@ const dropTables = async () => {
     try {
         console.log("Starting to drop tables")
         await client.query(`
+        DROP TABLE IF EXISTS users CASCADE;
         DROP TABLE IF EXISTS recipes CASCADE;
         DROP TABLE IF EXISTS ingredients CASCADE;
         DROP TABLE IF EXISTS instructions CASCADE;
@@ -26,6 +28,11 @@ const dropTables = async () => {
 const createTables = async () => {
     console.log("Building tables")
     await client.query(`
+        CREATE TABLE users (
+            "usersId" SERIAL PRIMARY KEY,
+            username VARCHAR(255) UNIQUE NOT NULL,
+            password VARCHAR(255) NOT NULL
+        );
         CREATE TABLE recipes (
             "recipesId" SERIAL PRIMARY KEY,
             recipe_name VARCHAR(255),
@@ -51,6 +58,20 @@ const createTables = async () => {
 }
 
 // Insert mock data from seedData.js
+
+//Create users
+const createInitialUser = async () => {
+    try {
+        for (const user of users) {
+            await createUser(user)
+        }
+        console.log("createed user")
+    } catch (error) {
+        throw error
+    }
+}
+
+
 //Create recipes 
 const createInitialRecipe = async () => {
     try {
@@ -99,6 +120,7 @@ const rebuildDb = async () => {
         await createTables()
 
         //Generating starting data 
+        await createInitialUser()
         await createInitialRecipe()
         await createInitialIngredients()
         await createInitialInstructions()

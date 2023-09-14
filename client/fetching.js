@@ -1,5 +1,49 @@
-// -----RECIPES FETCH REQUESTS-----
 const baseUrl = "http://localhost:8080/api";
+// -----USERS FETCH REQUESTS-----
+
+export async function login (username, password) {
+    try {
+       const response = await fetch(`${baseUrl}/users/login`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+       })
+       const result = await response.json();
+       console.log(result);
+       return result 
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export async function register (username, password) {
+    try {
+        const response = await fetch(`${baseUrl}/users/register`, {
+           method: "POST",
+           headers: {
+            'Content-Type': 'application/json'
+           },
+           body: JSON.stringify({
+            username: username, 
+            password: password
+           })
+        })
+        const result = await response.json();
+        console.log(result)
+        return result
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+
+// -----RECIPES FETCH REQUESTS-----
 
 export async function fetchAllRecipes () {
     try {

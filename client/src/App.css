@@ -19,6 +19,15 @@
   height: auto;
 }
 
+.register-container {
+  background-color: white;
+  box-shadow: 0 2px 4px;
+  padding: 20px;
+  border-radius: 8px;
+  width: auto;
+  height: 500px;
+}
+
 #nav-bar-container {
   display: flex;
   justify-content: flex-end;

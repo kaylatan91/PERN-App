@@ -1,5 +1,10 @@
 //Make some arrays of objects based on the schema design I created
 
+// Users 
+const users = [
+    { username: "Kayla", password: "Oreo"},
+    { username: "Grace", password: "Hopper"}
+]
 
 // Recipes
 const recipes = [
@@ -56,4 +61,5 @@ const instructions = [
     }
 ]
 
-module.exports = { recipes, ingredients, instructions }
+
+module.exports = { users, recipes, ingredients, instructions }
